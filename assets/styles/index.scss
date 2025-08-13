@@ -16,16 +16,16 @@ html {
   -webkit-text-size-adjust: 100%; // предотвращаем изменение размера шрифта в iOS
   font-family: 'MuseoSansCyrl', sans-serif;
   scroll-behavior: smooth;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  background-color: #fff;
+  background-color: $dark;
   color: #000;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 img,

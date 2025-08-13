@@ -3,11 +3,18 @@
 <template>
 	<div class="default-layout">
 		<GradientBackground />
-		<Header />
-		<main>
-			<slot />
-		</main>
+		<div class="layout-content">
+			<Header />
+			<main>
+				<slot />
+			</main>
+		</div>
 	</div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.layout-content {
+	position: relative;
+	z-index: 1;
+}
+</style>

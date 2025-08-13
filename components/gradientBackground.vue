@@ -4,16 +4,15 @@ import { onMounted, onBeforeUnmount } from "vue";
 let handleScroll;
 
 onMounted(() => {
-	const circles = document.querySelectorAll(".circle");
+	const circle1 = document.querySelector(".circle-1");
+	const circle2 = document.querySelector(".circle-2");
 
 	handleScroll = () => {
 		const scrollY = window.scrollY;
-		circles[0].style.transform = `translate(${scrollY * 0.1}px, ${
-			scrollY * 0.2
-		}px)`;
-		circles[1].style.transform = `translate(${-scrollY * 0.1}px, ${
-			scrollY * 0.15
-		}px)`;
+
+		// Движение только по вертикали
+		circle1.style.transform = `translateY(${scrollY * 0.3}px)`;
+		circle2.style.transform = `translateY(${-scrollY * 0.3}px)`;
 	};
 
 	window.addEventListener("scroll", handleScroll);
@@ -40,6 +39,7 @@ onBeforeUnmount(() => {
 	height: 100%;
 	overflow: hidden;
 	z-index: 0;
+	pointer-events: none;
 }
 
 .circle {
@@ -48,28 +48,31 @@ onBeforeUnmount(() => {
 	height: 900px;
 	border-radius: 50%;
 	filter: blur(150px);
-	opacity: 0.7;
-	animation: float 12s ease-in-out infinite alternate;
+	opacity: 0.75;
+	transition: transform 0.2s ease-out;
 }
 
 .circle-1 {
-	top: -400px;
-	left: -400px;
-	background: radial-gradient(circle at 30% 30%, #e77726, #cb3ace);
+	top: -300px;
+	right: -700px;
+	background: radial-gradient(
+		circle at 25% 35%,
+		#e77726 0%,
+		#ff9a4d 25%,
+		#cb3ace 55%,
+		#d66ee8 100%
+	);
 }
 
 .circle-2 {
-	bottom: -400px;
-	right: -400px;
-	background: radial-gradient(circle at 70% 70%, #cb3ace, #2947e8);
-}
-
-@keyframes float {
-	0% {
-		transform: translate(0, 0) scale(1);
-	}
-	100% {
-		transform: translate(20px, -20px) scale(1.05);
-	}
+	bottom: -300px;
+	left: -600px;
+	background: radial-gradient(
+		circle at 70% 65%,
+		#cb3ace 0%,
+		#9a5bff 30%,
+		#2947e8 65%,
+		#4a74ff 100%
+	);
 }
 </style>
