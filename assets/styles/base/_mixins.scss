@@ -1,0 +1,73 @@
+/* --------------------------
+  1. Миксин: media queries
+--------------------------- */
+$mobile: 360;
+$tablet: 768;
+$desktop: 1366;
+
+/* Телефон (меньше $mobile) */
+@mixin mobile {
+  @media only screen and (max-width: $mobile - 1px) {
+    @content;
+  }
+}
+
+/* Планшет (меньше $tablet) */
+@mixin tablet {
+  @media only screen and (max-width: $tablet - 1px) {
+    @content;
+  }
+}
+
+/* -------------------------
+	2. Миксин: flex container
+-------------------------- */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+/* ----------------------------
+	3. Миксин: Cover Background
+----------------------------- */
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ----------------------------
+	4. Миксин: Font
+----------------------------- */
+@mixin text-style($desktop-size, $tablet-size: $desktop-size, $mobile-size: $desktop-size) {
+  font-size: $desktop-size;
+
+  @media (max-width: $tablet - 1px) {
+    font-size: $tablet-size;
+  }
+
+  @media (max-width: $mobile - 1px) {
+    font-size: $mobile-size;
+  }
+}
