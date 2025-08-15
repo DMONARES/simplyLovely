@@ -1,29 +1,13 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount, resolveComponent } from "vue";
+
 const navLinks = [
-	{
-		link: "#",
-		text: "Кейсы",
-	},
-	{
-		link: "#",
-		text: "Услуги",
-	},
-	{
-		link: "#",
-		text: "Агенство",
-	},
-	{
-		link: "#",
-		text: "Блог",
-	},
-	{
-		link: "#",
-		text: "Вакансии",
-	},
-	{
-		link: "#",
-		text: "Контакты",
-	},
+	{ link: "#", text: "Кейсы" },
+	{ link: "#", text: "Услуги" },
+	{ link: "#", text: "Агенство" },
+	{ link: "#", text: "Блог" },
+	{ link: "#", text: "Вакансии" },
+	{ link: "#", text: "Контакты" },
 ];
 
 const contactLinks = [
@@ -41,105 +25,178 @@ const contactLinks = [
 		link: "#",
 		text: "Отправить заявку",
 	},
-	{
-		icon: resolveComponent("IconsTg"),
-		link: "#",
-		text: "Написать в Telegram",
-	},
+	{ icon: resolveComponent("IconsTg"), link: "#", text: "Написать в Telegram" },
 	{
 		icon: resolveComponent("IconsWhatsapp"),
 		link: "#",
 		text: "Написать в WhatsApp",
 	},
 ];
+
+const showNav = ref(true);
+const burgerStage = ref("");
+
+const handleScroll = () => {
+	showNav.value = window.scrollY === 0;
+};
+
+const toggleMenu = () => {
+	if (burgerStage.value === "") {
+		burgerStage.value = "merge";
+		setTimeout(() => {
+			burgerStage.value = "active";
+		}, 150);
+	} else {
+		burgerStage.value = "merge";
+		setTimeout(() => {
+			burgerStage.value = "";
+		}, 150);
+	}
+};
+
+onMounted(() => {
+	window.addEventListener("scroll", handleScroll);
+	handleScroll();
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
-	<!-- header -->
-	<header class="header container">
-		<nuxt-link to="/" class="header__logo">
-			<IconsLogo />
-		</nuxt-link>
-		<nav class="header__nav">
-			<ul class="header__nav-list">
-				<li
-					class="header__nav-item"
-					v-for="(link, index) in navLinks"
-					:key="link.text + index"
-				>
-					<UiNavLink :href="link.link">
-						{{ link.text }}
-					</UiNavLink>
-				</li>
-			</ul>
-		</nav>
-		<!-- <div class="header__burger">
-      <span></span>
-    </div> -->
+	<header class="header">
+		<div class="header__container">
+			<nuxt-link to="/" class="header__logo">
+				<IconsLogo />
+			</nuxt-link>
 
-		<!-- menu -->
-		<!-- <div class="header__menu">
-      <div class="header__menu-nav">
-        <ul class="header__menu-list">
-          <li
-            class="header__menu-item"
-            v-for="(link, index) in navLinks"
-            :key="link.text + index"
-          >
-            <UiNavLink :href="link.link">
-              {{ link.text }}
-            </UiNavLink>
-          </li>
-        </ul>
-      </div>
-      <div class="header__menu-divider"></div>
-      <div class="header__menu-contacts">
-        <UiContactLink
-          v-for="(item, index) in contactLinks"
-          :key="index"
-          :icon="item.icon"
-          :link="item.link"
-          :tabs="item.tabs || []"
-					:light="item.light"
-        >
-          {{ item.text }}
-        </UiContactLink>
-      </div>
-    </div> -->
+			<div class="header__right">
+				<nav class="header__nav" :class="{ 'header__nav--hidden': !showNav }">
+					<ul class="header__nav-list">
+						<li v-for="(link, index) in navLinks" :key="link.text + index">
+							<UiNavLink :href="link.link">{{ link.text }}</UiNavLink>
+						</li>
+					</ul>
+				</nav>
+
+				<div
+					class="header__burger"
+					:class="[
+						{ 'header__burger--visible': !showNav },
+						burgerStage ? `header__burger--${burgerStage}` : '',
+					]"
+					@click="toggleMenu"
+				></div>
+			</div>
+		</div>
 	</header>
 </template>
 
 <style lang="scss">
-.header
-{
-	margin: 0 auto;
-	margin-top: 28px;
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 50px;
+	z-index: 1000;
+	padding: 10px 0;
 
-	.header__logo { z-index: 999; }
-
-	.header__nav-list
-	{
+	&__container {
+		height: 70px;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
 		display: flex;
 		align-items: center;
-		gap: 20px;
+		justify-content: space-between;
 	}
-	.header__burger { z-index: 999; }
-	// .header__menu {
-	// 	.header__menu-nav {
-	// 	}
-	// 	.header__menu-list {
-	// 	}
-	// 	.header__menu-item {
-	// 	}
-	// 	.header__menu-divider {
-	// 	}
-	// 	.header__menu-contacts {
-	// 	}
-	// }
+
+	&__right {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	&__nav {
+		transition: transform 0.3s ease, opacity 0.3s ease;
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: auto;
+
+		&--hidden {
+			transform: translateY(-20px);
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&-list {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+		}
+	}
+
+	&__burger {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%) translateY(-20px);
+		opacity: 0;
+		pointer-events: none;
+		width: 32px;
+		height: 18px;
+		cursor: pointer;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			height: 2px;
+			background-color: $white;
+			transition: all 0.3s ease;
+		}
+
+		&::before {
+			top: 0;
+			width: 100%;
+		}
+
+		&::after {
+			top: 9px;
+			width: 70%;
+		}
+
+		&--visible {
+			opacity: 1;
+			transform: translateY(-50%) translateY(0);
+			pointer-events: auto;
+		}
+
+		&--merge {
+			&::before {
+				top: 7px;
+			}
+			&::after {
+				top: 7px;
+				width: 100%;
+			}
+		}
+
+		&--active {
+			&::before {
+				top: 7px;
+				transform: rotate(45deg);
+			}
+			&::after {
+				top: 7px;
+				width: 100%;
+				transform: rotate(-45deg);
+			}
+		}
+	}
 }
 </style>
