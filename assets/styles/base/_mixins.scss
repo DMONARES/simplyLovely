@@ -1,9 +1,9 @@
 /* --------------------------
   1. Миксин: media queries
 --------------------------- */
-$mobile: 360;
-$tablet: 768;
-$desktop: 1366;
+$mobile: 451;
+$tablet: 769;
+$desktop: 1367;
 
 /* Телефон (меньше $mobile) */
 @mixin mobile {

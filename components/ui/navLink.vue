@@ -4,11 +4,15 @@ const props = defineProps({
 		type: String,
 		default: '#',
 	},
+	isLarge: {
+		type: Boolean,
+		default: false,
+	},
 });
 </script>
 
 <template>
-	<NuxtLink  class="ui-link">
+	<NuxtLink  class="ui-link" :class="{'ui-link--large': isLarge}">
 		<slot/>
 	</NuxtLink>
 </template>
@@ -17,6 +21,7 @@ const props = defineProps({
 .ui-link
 {
 	padding: 11px 20px;
+	font-size: 14px;
 	font-weight: 300;
 	color: $white;
 	background-color: transparent;
@@ -30,6 +35,26 @@ const props = defineProps({
 
 	&:hover {
 		background-color: $greyDark;
+	}
+
+	&--large {
+		padding: 20px 35px;
+		font-size: 27px;
+		line-height: 140%;
+		font-weight: 300;
+		border-radius: 32px;
+		color: $greyLight;
+		background-color: transparent;
+
+		&:hover {
+			color: $white;
+			background-color: transparent;
+		}
+
+		@media (max-width: 768px)
+		{
+			font-size: 24px;
+		}
 	}
 }
 </style>

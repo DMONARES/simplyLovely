@@ -20,7 +20,6 @@ const props = defineProps({
 	}
 });
 
-// Активный таб (если есть)
 const activeIndex = ref(0);
 
 const activeValue = computed(() => {
@@ -37,18 +36,13 @@ function selectTab(index) {
 
 <template>
 	<div class="contact-link">
-		<!-- Иконка -->
 		<div class="contact-link__base">
-			<component :is="icon" class="contact-link__icon" />
-
-			<!-- Основная ссылка -->
 			<NuxtLink :href="link" class="contact-link__text" :class="{'contact-link__text--light': light}">
 				<slot v-if="!tabs.length" />
 				<span v-else>{{ activeValue }}</span>
 			</NuxtLink>
 		</div>
 
-		<!-- Табы -->
 		<div v-if="tabs.length" class="contact-link__tabs">
 			<button
 				v-for="(tab, index) in tabs"
@@ -77,12 +71,6 @@ function selectTab(index) {
 		gap: 14px;
 	}
 
-	&__icon
-	{
-		width: 26px;
-		height: 26px;
-	}
-
 	&__text
 	{
 		font-size: 15px;
@@ -100,7 +88,6 @@ function selectTab(index) {
 
 	&__tabs
 	{
-		margin-left: 40px;
 		display: flex;
 		align-items: center;
 		gap: 10px;

@@ -1,6 +1,4 @@
 <script setup>
-import { onMounted, onBeforeUnmount } from "vue";
-
 let handleScroll;
 
 onMounted(() => {
@@ -44,35 +42,47 @@ onBeforeUnmount(() => {
 
 .circle {
 	position: absolute;
-	width: 900px;
-	height: 900px;
+	width: 750px;
+	height: 750px;
 	border-radius: 50%;
-	filter: blur(150px);
+	filter: blur(200px);
 	opacity: 0.75;
 	transition: transform 0.2s ease-out;
 }
-
 .circle-1 {
-	top: -300px;
+	top: -500px;
 	right: -700px;
 	background: radial-gradient(
 		circle at 25% 35%,
-		#e77726 0%,
-		#ff9a4d 25%,
-		#cb3ace 55%,
-		#d66ee8 100%
+		#c85f1f 0%,
+		#e87830 25%,
+		#a02aae 55%,
+		#9f3ddb 100%
 	);
+	opacity: 0.9;
 }
 
 .circle-2 {
-	bottom: -300px;
-	left: -600px;
+	bottom: -500px;
+	left: -700px;
 	background: radial-gradient(
 		circle at 70% 65%,
-		#cb3ace 0%,
-		#9a5bff 30%,
-		#2947e8 65%,
-		#4a74ff 100%
+		#a02aae 0%,
+		#7b3cff 30%,
+		#1f2a9b 65%,
+		#3f5dff 100%
 	);
+	opacity: 0.9;
+}
+
+.bg-circles::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(38,30,48,0.3);
+	z-index: -1;
 }
 </style>

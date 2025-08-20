@@ -5,34 +5,38 @@
 ------------------------ */
 *,
 *::before,
-*::after {
+*::after
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
+html
+{
   line-height: 1.5;
   -webkit-text-size-adjust: 100%; // предотвращаем изменение размера шрифта в iOS
   font-family: 'MuseoSansCyrl', sans-serif;
   scroll-behavior: smooth;
-	overflow-x: hidden;
 }
 
-body {
-  min-height: 100vh;
+body
+{
+	padding-top: 200px;
   text-rendering: optimizeSpeed;
   background-color: $dark;
   color: #000;
 	position: relative;
-	overflow-x: hidden;
+
+	@media(max-width: 768px) { padding-top: 110px; }
 }
 
 img,
 picture,
 video,
 canvas,
-svg {
+svg
+{
   display: block;
   max-width: 100%;
   height: auto;
@@ -41,26 +45,24 @@ svg {
 input,
 button,
 textarea,
-select {
-  font: inherit;
-}
+select { font: inherit; }
 
-a {
+a
+{
   color: inherit;
   text-decoration: none;
 }
 
 button,
-[role="button"] {
+[role="button"]
+{
   cursor: pointer;
   background: none;
   border: none;
 }
 
 ul,
-ol {
-  list-style: none;
-}
+ol { list-style: none; }
 
 /* -----------------------
   2. Media content
@@ -68,7 +70,8 @@ ol {
 iframe,
 img,
 video,
-picture {
+picture
+{
   max-width: 100%;
   display: block;
 }
@@ -77,23 +80,19 @@ picture {
   3. Form elements reset
 ------------------------ */
 input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button {
+input::-webkit-outer-spin-button
+{
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type='number'] {
-  -moz-appearance: textfield;
-}
+input[type='number'] { -moz-appearance: textfield; }
 
-textarea {
-  resize: vertical;
-}
+textarea { resize: vertical; }
 
 /* -----------------------
   4. Accessibility helpers
 ------------------------ */
-[hidden] {
-  display: none !important;
-}
+[hidden] { display: none !important; }
 
+body.no-scroll { overflow: hidden; }

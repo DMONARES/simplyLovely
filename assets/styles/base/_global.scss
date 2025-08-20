@@ -1,5 +1,21 @@
-.container {
-	max-width: 1284px;
-	padding: 0 35px;
+.container
+{
+	max-width: 1573px;
+	padding-inline: 30px;
 	margin: 0 auto;
+
+	@media(max-width: 1600px) { max-width: 1233px; }
+
+	@media(max-width: 1366px) { max-width: 1214px; }
+
+	@media(max-width: 768px) { padding-inline: 55px; }
+
+	@media(max-width: 450px) { padding-inline: 36px; }
+}
+
+.section
+{
+	padding-block: 60px;
+
+	&--no-padding { padding: 0; }
 }
