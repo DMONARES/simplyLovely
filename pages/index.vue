@@ -12,38 +12,39 @@ const casesSection = {
 	cases: [
 		{
 			title: 'Новый бренд и сайт для дистрибьютора звукового оборудования Cromi',
-			img: '/img/cases/1.webp',
+			img: '/img/cases/1.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Вывели международного интегратора IT-сервисов Orange в digital в России',
-			img: '/img/cases/3.webp',
+			img: '/img/cases/2.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Обновили образ бренда и привлекли новых покупателей для дистрибьютера «Во!Молоко»',
-			img: '/img/cases/4.webp',
+			img: '/img/cases/3.jpg',
+			blackText: true,
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Бренд-стратегия для производителя резиновых сапогов KAURY',
-			img: '/img/cases/5.webp',
+			img: '/img/cases/4.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Фирменный стиль и сайт для международной транферной компании Riderra',
-			img: '/img/cases/6.webp',
+			img: '/img/cases/5.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Контент-маркетинг, сайт и видео для бренда украшений Darkrain',
-			img: '/img/cases/7.webp',
+			img: '/img/cases/6.jpg',
+			foreign: true,
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 		{
 			title: 'Привлекли 10 000 подписчиков в Instagram для бренда Toofli',
-			img: '/img/cases/8.webp',
-			foreign: true,
+			img: '/img/cases/7.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
 	]

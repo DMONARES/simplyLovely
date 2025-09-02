@@ -4,7 +4,7 @@ const props = defineProps({
 		type: Object,
 		required: true,
 		default: () => ({})
-	}
+	},
 });
 
 const windowWidth = ref(window.innerWidth);
@@ -24,9 +24,10 @@ onUnmounted(() => window.removeEventListener("resize", updateWidth));
 		</div>
 		<ul class="cases-block__list">
 			<CasesListCard
-				v-for="(card, i) in (windowWidth <= 450 ? data.cases.slice(0, 4) : data.cases)"
+				v-for="(card, i) in (windowWidth <= 675 ? data.cases.slice(0, 4) : data.cases)"
 				:key="card.title"
 				:card="card"
+				:blackText="card.blackText"
 				class="cases-block__card"
 			/>
 			<CasesListLastCard/>
@@ -66,25 +67,17 @@ onUnmounted(() => window.removeEventListener("resize", updateWidth));
 		text-align: center;
 		color: $disabled;
 	}
-	.cases-block__list {
+	.cases-block__list
+	{
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 30px;
 
-		@media (max-width: 1400px) {
-			grid-template-columns: repeat(3, 1fr);
-		}
+		@media (max-width: 1600px) { grid-template-columns: repeat(3, 1fr); }
 
-		@media (max-width: 768px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
+		@media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
 
-		@media (max-width: 450px) {
-			grid-template-columns: 1fr;
-		}
-	}
-	.cases-block__card
-	{
+		@media (max-width: 675px) { grid-template-columns: 1fr; }
 	}
 }
 </style>

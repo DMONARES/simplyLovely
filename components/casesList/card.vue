@@ -1,19 +1,3 @@
-<template>
-  <nuxt-link class="case-card" to="#" :style="{ backgroundImage: `url(${card.img})` }">
-    <div class="case-card__categories">
-      <div class="categories-slider">
-        <span v-for="category in card.categories" :key="category">{{ category }}</span>
-      </div>
-    </div>
-
-    <div class="case-card__title">{{ card.title }}</div>
-
-    <div class="case-card__icon" v-if="card.foreign">
-      <IconsForeign />
-    </div>
-  </nuxt-link>
-</template>
-
 <script setup>
 const props = defineProps({
   card: {
@@ -21,11 +5,31 @@ const props = defineProps({
     required: true,
     default: () => ({})
   },
+	blackText: {
+		type: Boolean,
+		default: false
+	}
 });
 </script>
 
+<template>
+  <nuxt-link class="case-card" to="#">
+    <div class="case-card__bg" :style="{ backgroundImage: `url(${card.img})` }"></div>
+    <div class="case-card__categories">
+      <div class="case-card__categories-slider" :class="{'case-card__categories-slider--black': blackText}">
+        <span v-for="category in card.categories" :key="category">{{ category }}</span>
+      </div>
+    </div>
+    <div class="case-card__title" :class="{'case-card__title--black': blackText}">{{ card.title }}</div>
+    <div class="case-card__icon" v-if="card.foreign">
+      <IconsForeign />
+    </div>
+  </nuxt-link>
+</template>
+
 <style lang="scss" scoped>
-.case-card {
+.case-card
+{
   position: relative;
   padding: 24px;
   display: flex;
@@ -34,83 +38,88 @@ const props = defineProps({
   align-items: flex-start;
   width: 100%;
   aspect-ratio: 3/4;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
+  border-radius: 30px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.5s ease;
 
-  // фон зумится на hover
-  &:hover {
-    background-size: 110%;
+  .case-card__bg
+	{
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s ease;
+    z-index: 0;
   }
 
-  &__categories {
+  &:hover .case-card__bg { transform: scale(1.1); }
+
+  &__categories
+	{
     width: 100%;
-    overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: all 0.7s ease;
+    transition: all 1s ease;
     margin-bottom: 10px;
 
-    .categories-slider {
+    .case-card__categories-slider
+		{
       display: flex;
       gap: 20px;
       white-space: nowrap;
       animation: slide 6s linear infinite alternate;
 
-      span {
+      span
+			{
         display: inline-block;
-        padding: 4px 12px;
-        background: rgba(0, 0, 0, 0.55);
-        border-radius: 10px;
-        color: white;
+        color: $white;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 300;
+				line-height: 140%;
       }
+
+			&--black span { color: $black; }
     }
   }
 
-  &__title {
-    font-size: 18px;
+  &__title
+	{
+    font-size: 20px;
     font-weight: 500;
-    line-height: 130%;
+    line-height: 150%;
     color: #fff;
     z-index: 2;
     transition: transform 0.7s ease;
+
+		&--black { color: $black; }
   }
 
-  &__icon {
+  &__icon
+	{
     position: absolute;
     bottom: 40px;
     left: 30px;
     z-index: 2;
   }
 
-  // hover эффекты
-  &:hover {
-    .case-card__title {
-      transform: translateY(20px);
-    }
+  &:hover
+	{
+    .case-card__title { transform: translateY(20px); }
 
-    .case-card__categories {
+    .case-card__categories
+		{
       max-height: 40px;
       opacity: 1;
     }
   }
 }
 
-// анимация категорий туда-сюда
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  50% {
-    transform: translateX(-20%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+@keyframes slide
+{
+  0% { transform: translateX(0%); }
+
+  50% { transform: translateX(-20%); }
+
+  100% { transform: translateX(0%); }
 }
 </style>
