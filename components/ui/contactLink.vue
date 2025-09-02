@@ -17,7 +17,11 @@ const props = defineProps({
 	light: {
 		type: Boolean,
 		default: false,
-	}
+	},
+	inline: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const activeIndex = ref(0);
@@ -35,15 +39,15 @@ function selectTab(index) {
 </script>
 
 <template>
-	<div class="contact-link">
+	<div class="contact-link" :class="{'contact-link--inline': inline}">
 		<div class="contact-link__base">
-			<NuxtLink :href="link" class="contact-link__text" :class="{'contact-link__text--light': light}">
+			<NuxtLink :href="link" class="contact-link__text" :class="{'contact-link__text--light': light, 'contact-link__text--large': inline}">
 				<slot v-if="!tabs.length" />
 				<span v-else>{{ activeValue }}</span>
 			</NuxtLink>
 		</div>
 
-		<div v-if="tabs.length" class="contact-link__tabs">
+		<div v-if="tabs.length" class="contact-link__tabs" :class="{'contact-link__tabs--large': inline}">
 			<button
 				v-for="(tab, index) in tabs"
 				:key="index"
@@ -63,6 +67,13 @@ function selectTab(index) {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+
+	&--inline
+	{
+		flex-direction: row-reverse;
+		align-items: center;
+		gap: 30px;
+	}
 
 	&__base
 	{
@@ -84,6 +95,8 @@ function selectTab(index) {
 		}
 
 		&--light { color: $white; }
+
+		&--large { font-size: 16px; }
 	}
 
 	&__tabs
@@ -101,6 +114,13 @@ function selectTab(index) {
 
 			&.active { color: $white; }
 		}
+	}
+
+	&__tabs--large
+	{
+		gap: 30px;
+
+		button { font-size: 16px; }
 	}
 }
 </style>

@@ -123,8 +123,8 @@ onBeforeUnmount(() => {
 							:key="index"
 							:link="link.link"
 							:tabs="link.tabs"
-							>{{ link.text }}</UiContactLink
-						>
+							>{{ link.text }}
+						</UiContactLink>
 					</div>
 					<div class="header__modal-footer-social">
 						<nuxt-link
