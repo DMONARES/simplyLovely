@@ -22,11 +22,14 @@ html
 
 body
 {
-	padding-top: 200px;
-  text-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
   background-color: $dark;
-  color: #000;
 	position: relative;
+}
+
+main
+{
+	padding-top: 200px;
 
 	@media(max-width: 768px) { padding-top: 110px; }
 }

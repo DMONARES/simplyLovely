@@ -1,18 +1,30 @@
 <script setup>
 const props = defineProps({
-	data: {
-		type: Object,
-		required: true,
-		default: () => ({})
-	},
+  data: {
+    type: Object,
+    required: true,
+    default: () => ({})
+  },
 });
 
-const windowWidth = ref(window.innerWidth);
+const windowWidth = ref(0);
 
-const updateWidth = () => windowWidth.value = window.innerWidth;
+const updateWidth = () => {
+  if (typeof window !== 'undefined') {
+    windowWidth.value = window.innerWidth;
+  }
+};
 
-onMounted(() => window.addEventListener("resize", updateWidth));
-onUnmounted(() => window.removeEventListener("resize", updateWidth));
+onMounted(() => {
+  updateWidth();
+  window.addEventListener("resize", updateWidth);
+});
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener("resize", updateWidth);
+  }
+});
 </script>
 
 

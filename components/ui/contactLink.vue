@@ -2,10 +2,6 @@
 import { ref } from "vue";
 
 const props = defineProps({
-	icon: {
-		type: Object,
-		required: true,
-	},
 	link: {
 		type: String,
 		default: "#",
