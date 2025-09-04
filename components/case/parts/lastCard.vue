@@ -4,7 +4,7 @@
 
 <template>
 	<nuxt-link to="/" class="last-card">
-		<p>Смотреть больше кейсов</p>
+		<p><slot/></p>
 		<img src="/img/cases/lastBlogGif.gif" loop="loop" playsinline loading="lazy" class="last-card__bg">
 		<div class="last-card__dark"></div>
 	</nuxt-link>

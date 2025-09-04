@@ -1,3 +1,7 @@
+/*-----------
+ Containers
+------------*/
+
 .container
 {
 	max-width: 1573px;
@@ -18,6 +22,31 @@
 	padding-block: 60px;
 
 	&--no-padding { padding: 0; }
+}
+
+.cases-grid
+{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+
+	@media (max-width: 1600px) { grid-template-columns: repeat(3, 1fr); }
+
+	@media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+
+	@media (max-width: 675px) { grid-template-columns: 1fr; }
+}
+
+.cases-block
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 95px;
+
+	@include tablet { gap: 80px; }
+
+	@include mobile { gap: 40px; }
 }
 
 /*-------

@@ -7,8 +7,10 @@ const heroSection = {
 };
 
 const casesSection = {
-	title: 'Кейсы',
-	subtitle: 'Где мы реализуем подход брендформанса, который включает синергию и дает крутые результаты в долгосрочной перспективе.',
+	header: {
+		title: 'Кейсы',
+		subtitle: 'Где мы реализуем подход брендформанса, который включает синергию и дает крутые результаты в долгосрочной перспективе.',
+	},
 	cases: [
 		{
 			title: 'Новый бренд и сайт для дистрибьютора звукового оборудования Cromi',
@@ -47,15 +49,21 @@ const casesSection = {
 			img: '/img/cases/7.jpg',
 			categories: ['Стратегия', 'Продвиженеие', 'Сайт']
 		},
-	]
+	],
+	lastCardText: 'Смотреть больше кейсов'
 };
 </script>
 
 <template>
-	<div>
-		<HeroTitleBlock :data="heroSection"/>
-		<CasesList :data="casesSection"/>
-	</div>
+  <div>
+    <HeroTitleBlock :data="heroSection"/>
+
+    <Case
+      :data="casesSection"
+      layout="grid"
+      header-variant="column"
+    />
+  </div>
 </template>
 
 <style lang="scss"></style>
