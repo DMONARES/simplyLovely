@@ -1,25 +1,62 @@
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+
 const props = defineProps({
   cases: {
     type: Array,
     required: true,
     default: () => []
-  }
+  },
+	lastCardText: {
+    type: String,
+    default: 'Смотреть больше кейсов'
+  },
+	square: {
+		type: Boolean,
+		default: false
+	},
 });
 
+const swiperOptions = {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  }
+};
 </script>
 
 <template>
-  <div class="case-slider">
-    <div class="swiper-wrapper">
-      <div v-for="card in cases" :key="card.title" class="swiper-slide">
-        <CasePartsCard :card="card" :black-text="card.blackText" />
-      </div>
-			<CasePartsLastCard/>
-    </div>
-  </div>
+  <ClientOnly>
+    <Swiper
+      class="case-slider"
+      :slides-per-view="swiperOptions.slidesPerView"
+      :space-between="swiperOptions.spaceBetween"
+      :breakpoints="swiperOptions.breakpoints"
+    >
+      <SwiperSlide v-for="card in cases" :key="card.id || card.title" class="case-slider__item">
+        <CasePartsCard :card="card" :black-text="card.blackText" :square="square" />
+      </SwiperSlide>
+      <SwiperSlide class="case-slider__item">
+        <CasePartsLastCard :square="square">{{ lastCardText }}</CasePartsLastCard>
+      </SwiperSlide>
+    </Swiper>
+  </ClientOnly>
 </template>
 
 <style lang="scss" scoped>
+.case-slider {
+  width: 100%;
+  height: 100%;
 
+	.case-slider__item {
+		max-width: 350px;
+	}
+}
 </style>

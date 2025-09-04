@@ -1,9 +1,14 @@
 <script setup>
-
+const props = defineProps({
+	square: {
+		type: Boolean,
+		default: false
+	}
+});
 </script>
 
 <template>
-	<nuxt-link to="/" class="last-card">
+	<nuxt-link to="/" class="last-card" :class="{'last-card--square': square}">
 		<p><slot/></p>
 		<img src="/img/cases/lastBlogGif.gif" loop="loop" playsinline loading="lazy" class="last-card__bg">
 		<div class="last-card__dark"></div>
@@ -63,6 +68,12 @@
 		{
 			opacity: 0;
 		}
+	}
+
+	&--square
+	{
+		width: 370px;
+		aspect-ratio: 1/1;
 	}
 }
 </style>

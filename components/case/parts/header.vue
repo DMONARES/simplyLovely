@@ -22,8 +22,8 @@ const props = defineProps({
 
     <!-- Вариант 2: Ряд -->
     <div v-else-if="variant === 'row'" class="case-header__row">
-      <h2 class="h2 case-header__title">{{ data.title }}</h2>
-      <p v-if="data.subtitle" class="p-text case-header__subtitle">{{ data.subtitle }}</p>
+      <h2 class="h2 case-header__row-title">{{ data.title }}</h2>
+      <p v-if="data.subtitle" class="p-text case-header__row-subtitle">{{ data.subtitle }}</p>
     </div>
 
     <!-- Вариант 3: Ряд с навигацией -->
@@ -41,27 +41,41 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-	.case-header
+.case-header
+{
+	width: 100%;
+	display: flex;
+
+	.case-header__column
 	{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 30px;
+		margin: 0 auto;
+	}
+	.case-header__row
+	{
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
 
-		@include tablet { gap: 55px; }
-
-		@include mobile { gap: 25px; }
-
-		&--row
+		@include tablet
 		{
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
+			flex-direction: column;
+			gap: 50px;
+		}
 
-			@include mobile
-			{
-				grid-template-columns: repeat(1, 1fr);
-				gap: 56px;
-			}
+		&-title,
+		&-subtitle
+		{
+			display: flex;
+			align-items: flex-start;
+			width: 50%;
+			text-align: left;
+
+			@include tablet { width: 100%; }
 		}
 	}
+}
+
 </style>

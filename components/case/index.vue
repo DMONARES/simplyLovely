@@ -32,6 +32,8 @@ const props = defineProps({
     <CaseLayoutsSlider
       v-else-if="layout === 'slider'"
       :cases="data.cases"
+			:last-card-text="data.lastCardText"
+      :square="data.squareCards"
     />
   </section>
 </template>

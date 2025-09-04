@@ -8,19 +8,39 @@ const props = defineProps({
 	blackText: {
 		type: Boolean,
 		default: false
+	},
+	square: {
+		type: Boolean,
+		default: false
 	}
 });
 </script>
 
 <template>
-  <nuxt-link class="case-card" to="#">
+  <nuxt-link class="case-card" :class="{'case-card--square': square}" to="#">
     <div class="case-card__bg" :style="{ backgroundImage: `url(${card.img})` }"></div>
-    <div class="case-card__categories">
+    <div class="case-card__categories" v-if="card.categories">
       <div class="case-card__categories-slider" :class="{'case-card__categories-slider--black': blackText}">
         <span v-for="category in card.categories" :key="category">{{ category }}</span>
       </div>
     </div>
-    <div class="case-card__title" :class="{'case-card__title--black': blackText}">{{ card.title }}</div>
+    <div
+			class="case-card__title"
+			:class="{
+				'case-card__title--black': blackText,
+				'case-card__title--anim': card.categories
+			}">
+			{{ card.title }}
+		</div>
+    <div
+			v-if="card.subtitle"
+			class="case-card__subtitle"
+			:class="{
+				'case-card__subtitle--black': blackText,
+				'case-card__subtitle--anim': card.categories
+			}">
+			{{ card.subtitle }}
+		</div>
     <div class="case-card__icon" v-if="card.foreign">
       <IconsForeign />
     </div>
@@ -31,7 +51,7 @@ const props = defineProps({
 .case-card
 {
   position: relative;
-  padding: 24px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -41,6 +61,12 @@ const props = defineProps({
   border-radius: 30px;
   overflow: hidden;
   cursor: pointer;
+
+	&--square
+	{
+		width: 370px;
+		aspect-ratio: 1/1;
+	}
 
   .case-card__bg
 	{
@@ -94,6 +120,16 @@ const props = defineProps({
 		&--black { color: $black; }
   }
 
+	&__subtitle {
+		margin-top: 20px;
+		font-size: 14px;
+		font-weight: 300;
+		line-height: 150%;
+		color: $greyLight;
+		transition: transform 0.7s ease;
+		z-index: 2;
+	}
+
   &__icon
 	{
     position: absolute;
@@ -104,7 +140,7 @@ const props = defineProps({
 
   &:hover
 	{
-    .case-card__title { transform: translateY(20px); }
+    .case-card__title--anim, .case-card__subtitle--anim { transform: translateY(20px); }
 
     .case-card__categories
 		{
