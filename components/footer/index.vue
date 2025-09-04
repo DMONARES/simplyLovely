@@ -40,7 +40,7 @@ const feedbackLinks = [
       </ul>
 
       <div class="footer__contacts-feedback">
-        <span class="footer__contacts-feedback-text">Связаться</span>
+        <span class="footer__contacts-feedback-text">Отправить заявку</span>
         <div class="footer__contacts-feedback-links">
           <nuxt-link
             v-for="link in feedbackLinks"

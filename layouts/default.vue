@@ -82,16 +82,9 @@ onUnmounted(() => {
 			right: -65%;
 		}
 
-		@media screen and (max-width: 1100px) {
+		@include tablet {
 			height: 220vw;
 			width: 220vw;
-
-			&:first-child {
-				left: -140%;
-			}
-			&:last-child {
-				right: -140%;
-			}
 		}
 	}
 }

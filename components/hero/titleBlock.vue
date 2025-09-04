@@ -15,8 +15,8 @@ const props = defineProps({
 <template>
 	<section class="title-block container section">
 		<div class="title-block__header">
-			<h1 class="title-block__title">{{ data.title }}</h1>
-			<p class="title-block__subtitle">{{ data.subtitle }}</p>
+			<h1 class="h1 title-block__title">{{ data.title }}</h1>
+			<p class="text-large title-block__subtitle">{{ data.subtitle }}</p>
 		</div>
 		<div class="title-block__media">
 			<img
@@ -62,39 +62,6 @@ const props = defineProps({
 		gap: 40px;
 
 		@include mobile { gap: 35px; }
-	}
-
-	.title-block__title
-	{
-		font-size: 80px;
-		font-weight: 500;
-		line-height: 110%;
-		color: $white;
-
-		@include tablet
-		{
-			font-size: 56px;
-			line-height: 112%;
-		}
-
-		@include mobile { font-size: 48px; }
-	}
-
-	.title-block__subtitle
-	{
-		max-width: 600px;
-		font-size: 28px;
-		font-weight: 300;
-		line-height: 140%;
-		color: $white;
-
-		@include tablet
-		{
-			max-width: 370px;
-			font-size: 20px;
-		}
-
-		@include mobile { font-size: 18px; }
 	}
 
 	.title-block__media

@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
 			max-width: 1233px;
 		}
 
-		@media(max-width: 1366px) {
+		@include desktop {
 			max-width: 1214px;
 			padding: 0 30px;
 		}
@@ -325,14 +325,14 @@ onBeforeUnmount(() => {
 
 			@media (max-width: 1024px) { padding: 172px 75px 30px; }
 
-			@media (max-width: 768px)
+			@include tablet
 			{
 				padding: 150px 30px 85px;
 				align-items: flex-start;
 				gap: 50px;
 			}
 
-			@media (max-width: 450px)
+			@include mobile
 			{
 				padding: 150px 10px 85px;
 				gap: 40px;
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
 				gap: 25px;
 			}
 
-			@media (max-width: 768px) { align-items: flex-start; }
+			@include tablet { align-items: flex-start; }
 		}
 
 		.header__modal-buttons
@@ -362,9 +362,9 @@ onBeforeUnmount(() => {
 			justify-content: center;
 			gap: 20px;
 
-			@media (max-width: 768px) { margin-left: 30px; }
+			@include tablet { margin-left: 30px; }
 
-			@media (max-width: 450px)
+			@include mobile
 			{
 				flex-direction: column;
 				align-items: flex-start;
@@ -379,7 +379,7 @@ onBeforeUnmount(() => {
 			justify-content: space-between;
 			margin-top: auto;
 
-			@media (max-width: 768px)
+			@include tablet
 			{
 				margin: 0;
 				margin-left: 30px;

@@ -19,6 +19,13 @@ $desktop: 1367;
   }
 }
 
+/* Ноутбук (меньше $desktop) */
+@mixin desktop {
+  @media only screen and (max-width: $desktop - 1px) {
+    @content;
+  }
+}
+
 /* -------------------------
 	2. Миксин: flex container
 -------------------------- */

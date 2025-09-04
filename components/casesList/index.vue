@@ -31,8 +31,8 @@ onUnmounted(() => {
 <template>
 	<section class="cases-block container section">
 		<div class="cases-block__header" v-if="data.title || data.subtitle">
-			<h2 v-if="data.title" class="cases-block__title">{{ data.title }}</h2>
-			<p v-if="data.subtitle" class="cases-block__subtitle">{{ data.subtitle }}</p>
+			<h2 v-if="data.title" class="h2 cases-block__title">{{ data.title }}</h2>
+			<p v-if="data.subtitle" class="p-text cases-block__subtitle">{{ data.subtitle }}</p>
 		</div>
 		<ul class="cases-block__list">
 			<CasesListCard
@@ -55,30 +55,22 @@ onUnmounted(() => {
 	align-items: center;
 	gap: 95px;
 
+	@include tablet { gap: 80px; }
+
+	@include mobile { gap: 40px; }
+
 	.cases-block__header
 	{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 30px;
+
+		@include tablet { gap: 55px; }
+
+		@include mobile { gap: 25px; }
 	}
-	.cases-block__title
-	{
-		font-size: 54px;
-		font-weight: 500;
-		line-height: 112%;
-		text-align: center;
-		color: $white;
-	}
-	.cases-block__subtitle
-	{
-		max-width: 600px;
-		font-size: 18px;
-		font-weight: 300;
-		line-height: 162%;
-		text-align: center;
-		color: $disabled;
-	}
+
 	.cases-block__list
 	{
 		display: grid;
