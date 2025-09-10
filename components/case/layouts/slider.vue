@@ -12,7 +12,7 @@ const props = defineProps({
     type: String,
     default: 'Смотреть больше кейсов'
   },
-	square: {
+	cardMedium: {
 		type: Boolean,
 		default: false
 	},
@@ -41,10 +41,10 @@ const swiperOptions = {
       :breakpoints="swiperOptions.breakpoints"
     >
       <SwiperSlide v-for="card in cases" :key="card.id || card.title" class="case-slider__item">
-        <CasePartsCard :card="card" :black-text="card.blackText" :square="square" />
+        <CasePartsCard :card="card" :black-text="card.blackText" :cardMedium="cardMedium" />
       </SwiperSlide>
       <SwiperSlide class="case-slider__item">
-        <CasePartsLastCard :square="square">{{ lastCardText }}</CasePartsLastCard>
+        <CasePartsLastCard :cardMedium="cardMedium">{{ lastCardText }}</CasePartsLastCard>
       </SwiperSlide>
     </Swiper>
   </ClientOnly>
@@ -52,6 +52,7 @@ const swiperOptions = {
 
 <style lang="scss" scoped>
 .case-slider {
+	overflow: visible;
   width: 100%;
   height: 100%;
 

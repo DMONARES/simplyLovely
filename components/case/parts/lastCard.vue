@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-	square: {
+	cardMedium: {
 		type: Boolean,
 		default: false
 	}
@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<nuxt-link to="/" class="last-card" :class="{'last-card--square': square}">
+	<nuxt-link to="/" class="last-card" :class="{'last-card--cardMedium': cardMedium}">
 		<p><slot/></p>
 		<img src="/img/cases/lastBlogGif.gif" loop="loop" playsinline loading="lazy" class="last-card__bg">
 		<div class="last-card__dark"></div>
@@ -70,7 +70,7 @@ const props = defineProps({
 		}
 	}
 
-	&--square
+	&--cardMedium
 	{
 		width: 370px;
 		aspect-ratio: 1/1;

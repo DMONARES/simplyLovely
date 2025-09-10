@@ -1,4 +1,6 @@
 <script setup>
+import { Banner } from '#components';
+
 const heroSection = {
 	title: 'Делаем маркетинг лучше',
 	subtitle: 'За счет общей стратегии и синергии для брендинга и performance.',
@@ -105,6 +107,30 @@ const servicesSlider = {
 	],
 	lastCardText: 'Больше услуг на сайте',
 }
+
+const bannerInfo = {
+	header: {
+		title: 'Мы любим маркетинг ',
+		subtitle: 'И делать лучшие комплексные кейсы — это то, что нас зажигает.',
+	},
+	bannerItems: [
+		{
+			title: '100+',
+			subtitle: 'заряженных людей',
+			description: 'Среди нас лидеры и маркетологи, крутые специалисты и опытные сотрудники всех направлений'
+		},
+		{
+			title: '18',
+			subtitle: 'лет работы',
+			description: 'Подходим к задаче комплексно и предлагаем индивидуальные решения для продвижения бизнеса.'
+		},
+		{
+			title: '13+',
+			subtitle: 'направлений комплекса',
+			description: 'Мы реализовали 500+ крупных и мелких проектов в различных направлениях маркетинга'
+		},
+	]
+};
 </script>
 
 <template>
@@ -119,6 +145,7 @@ const servicesSlider = {
 
     <Case
       :data="blogSlider"
+			:cardMedium="true"
       layout="slider"
       header-variant="row"
     />
@@ -128,6 +155,9 @@ const servicesSlider = {
       layout="slider"
       header-variant="row"
     />
+
+		<CasePartsHeader :data="bannerInfo.header"/>
+		<Banner :data="bannerInfo" />
   </div>
 </template>
 

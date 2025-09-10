@@ -14,7 +14,11 @@ const props = defineProps({
   showLastCard: {
     type: Boolean,
     default: true
-  }
+  },
+	cardMedium: {
+		type: Boolean,
+		default: false
+	},
 });
 
 const { width: windowWidth } = useWindowSize();
@@ -27,10 +31,10 @@ const displayedItems = computed(() => {
 <template>
   <ul class="cases-grid">
     <li v-for="(card, i) in displayedItems" :key="card.title" class="cases-grid__item">
-      <CasePartsCard :card="card" :black-text="card.blackText" />
+      <CasePartsCard :card="card" :black-text="card.blackText" :cardMedium="cardMedium" />
     </li>
     <li v-if="showLastCard" class="cases-grid__item">
-      <CasePartsLastCard>{{ lastCardText }}</CasePartsLastCard>
+      <CasePartsLastCard :cardMedium="cardMedium">{{ lastCardText }}</CasePartsLastCard>
     </li>
   </ul>
 </template>

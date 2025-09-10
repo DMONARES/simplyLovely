@@ -12,7 +12,11 @@ const props = defineProps({
   headerVariant: {
     type: String,
     default: 'column'
-  }
+  },
+	cardMedium: {
+		type: Boolean,
+		default: false
+	},
 });
 </script>
 
@@ -27,13 +31,14 @@ const props = defineProps({
       v-if="layout === 'grid'"
       :cases="data.cases"
       :last-card-text="data.lastCardText"
+			:cardMedium="cardMedium"
     />
 
     <CaseLayoutsSlider
       v-else-if="layout === 'slider'"
       :cases="data.cases"
 			:last-card-text="data.lastCardText"
-      :square="data.squareCards"
+      :cardMedium="cardMedium"
     />
   </section>
 </template>

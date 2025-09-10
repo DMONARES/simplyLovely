@@ -9,15 +9,38 @@ const props = defineProps({
 		type: Boolean,
 		default: false
 	},
-	square: {
+	cardMedium: {
 		type: Boolean,
 		default: false
-	}
+	},
+	blur: {
+		type: Boolean,
+		default: false,
+	},
+	showPrice: {
+		type: Boolean,
+		default: false,
+	},
+/* ---------Размеры карточек----------
+// По дефолту карточка кейса большая
+// Есть 3 размера карточки:
+// 1. Большая - 370:500
+// 2. Средняя - 370:370
+// 3. Маленькая - 250:150
+-------------------------------------*/
+	cardMedium: {
+		type: Boolean,
+		default: false,
+	},
+	cardMini: {
+		type: Boolean,
+		default: false,
+	},
 });
 </script>
 
 <template>
-  <nuxt-link class="case-card" :class="{'case-card--square': square}" to="#">
+  <nuxt-link class="case-card" :class="{'case-card--cardMedium': cardMedium}" to="#">
     <div class="case-card__bg" :style="{ backgroundImage: `url(${card.img})` }"></div>
     <div class="case-card__categories" v-if="card.categories">
       <div class="case-card__categories-slider" :class="{'case-card__categories-slider--black': blackText}">
@@ -62,7 +85,7 @@ const props = defineProps({
   overflow: hidden;
   cursor: pointer;
 
-	&--square
+	&--cardMedium
 	{
 		width: 370px;
 		aspect-ratio: 1/1;
